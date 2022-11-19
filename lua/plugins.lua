@@ -14,7 +14,6 @@ packer.startup(function(use)
   -- }
   use 'jacoborus/tender.vim'
   use 'nvim-lualine/lualine.nvim' -- Statusline
-  use 'nvim-lua/plenary.nvim' -- Common utilities
   use 'onsails/lspkind-nvim' -- vscode-like pictograms
   use 'hrsh7th/cmp-buffer' -- nvim-cmp source for buffer words
   use 'hrsh7th/cmp-nvim-lsp' -- nvim-cmp source for neovim's built-in LSP
@@ -25,8 +24,17 @@ packer.startup(function(use)
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
 
-  use 'glepnir/lspsaga.nvim' -- LSP UIs
-  use 'L3MON4D3/LuaSnip'
+  use({
+    "glepnir/lspsaga.nvim",
+    branch = "main",
+    config = function()
+        local saga = require("lspsaga")
+
+        saga.init_lsp_saga({
+            -- your configuration
+        })
+    end,
+  })
   use {
     'nvim-treesitter/nvim-treesitter',
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
@@ -45,7 +53,6 @@ packer.startup(function(use)
   use 'akinsho/nvim-bufferline.lua'
   -- use 'github/copilot.vim'
 
-  use 'lewis6991/gitsigns.nvim'
   use 'dinhhuy258/git.nvim' -- For git blame & browse
 
   use 'fatih/vim-go'
@@ -55,17 +62,6 @@ packer.startup(function(use)
   use 'vim-test/vim-test'
   use 'dense-analysis/ale'
   use 'folke/lsp-colors.nvim'
-  use {
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("trouble").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
-  }
   use 't9md/vim-quickhl'
   -- use { 'neoclide/coc.nvim', branch = 'release' }
 
@@ -82,7 +78,6 @@ packer.startup(function(use)
   use 'hrsh7th/vim-vsnip'
   use 'machakann/vim-sandwich'
   use 'rcarriga/nvim-notify'
-  use 'folke/lsp-colors.nvim'
   use {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
@@ -94,25 +89,63 @@ packer.startup(function(use)
       }
     end
   }
-  use '/j-hui/fidget.nvim'
-  use 'nvim-treesitter/nvim-treesitter'
-  use({ "yioneko/nvim-yati", tag = "*", requires = "nvim-treesitter/nvim-treesitter" })
-  use 'nvim-treesitter/nvim-treesitter'
-  use 'nvim-treesitter/nvim-treesitter-context'
-  use {
-    'm-demare/hlargs.nvim',
-    requires = { 'nvim-treesitter/nvim-treesitter' }
-  }
   use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
   use 'RRethy/vim-illuminate'
   use 'sunjon/stylish.nvim'
-  use 'petertriho/nvim-scrollbar'
   use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
-  use 'sidebar-nvim/sidebar.nvim'
+  use {
+    "kevinhwang91/nvim-hlslens",
+    config = function()
+      -- require('hlslens').setup() is not required
+      require("scrollbar.handlers.search").setup({
+        -- hlslens config overrides
+      })
+    end,
+  }
+  use {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require('gitsigns').setup()
+      require("scrollbar.handlers.gitsigns").setup()
+    end
+  }
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
   use { 'akinsho/git-conflict.nvim', tag = "*", config = function()
     require('git-conflict').setup()
   end }
+  use 'lukas-reineke/indent-blankline.nvim'
+  use "rafamadriz/friendly-snippets"
+  use({ "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" })
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
+  use 'petertriho/nvim-scrollbar'
+
+  use 'romgrk/barbar.nvim'
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    },
+    tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  }
+
+  use({ "yioneko/nvim-yati", tag = "*", requires = "nvim-treesitter/nvim-treesitter" })
+  use 'nvim-treesitter/nvim-treesitter-context'
+  use "nvim-lua/plenary.nvim"
+  use 'nvim-lua/popup.nvim'
+  use 'hrsh7th/cmp-nvim-lsp-signature-help'
+  use 'hrsh7th/cmp-nvim-lsp-document-symbol'
+  use 'hrsh7th/cmp-cmdline'
+
   use {
     'pwntester/octo.nvim',
     requires = {
@@ -120,8 +153,10 @@ packer.startup(function(use)
       'nvim-telescope/telescope.nvim',
       'kyazdani42/nvim-web-devicons',
     },
-    config = function()
-      require "octo".setup()
+    config = function ()
+      require"octo".setup()
     end
   }
+
+  use 'j-hui/fidget.nvim'
 end)
