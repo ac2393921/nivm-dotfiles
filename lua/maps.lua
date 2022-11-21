@@ -41,6 +41,9 @@ keymap.set('n', '<C-w><down>', '<C-w>-')
 keymap.set('n', '<D-s>', ':w')
 
 keymap.set('n', '<C-s>', ':wa <bar> :QuickRun <stdin.txt <CR>')
+
+keymap.set('n', '<C-b>', ':NvimTreeToggle <CR>', { silent = true })
+
 vim.cmd [[
   let g:quickrun_config = {}
   let g:quickrun_config['cpp'] = {
