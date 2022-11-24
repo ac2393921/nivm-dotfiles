@@ -3,7 +3,6 @@ if (not status) then
   print("Packer is not installed")
   return
 end
-
 vim.cmd [[packadd packer.nvim]]
 
 packer.startup(function(use)
@@ -28,11 +27,11 @@ packer.startup(function(use)
     "glepnir/lspsaga.nvim",
     branch = "main",
     config = function()
-        local saga = require("lspsaga")
+      local saga = require("lspsaga")
 
-        saga.init_lsp_saga({
-            -- your configuration
-        })
+      saga.init_lsp_saga({
+        -- your configuration
+      })
     end,
   })
   use {
@@ -102,13 +101,7 @@ packer.startup(function(use)
       })
     end,
   }
-  use {
-    "lewis6991/gitsigns.nvim",
-    config = function()
-      require('gitsigns').setup()
-      require("scrollbar.handlers.gitsigns").setup()
-    end
-  }
+  use 'lewis6991/gitsigns.nvim'
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
   use { 'akinsho/git-conflict.nvim', tag = "*", config = function()
     require('git-conflict').setup()
@@ -119,11 +112,7 @@ packer.startup(function(use)
   use {
     "folke/which-key.nvim",
     config = function()
-      require("which-key").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
+      require("which-key").setup {}
     end
   }
 
@@ -153,10 +142,25 @@ packer.startup(function(use)
       'nvim-telescope/telescope.nvim',
       'kyazdani42/nvim-web-devicons',
     },
-    config = function ()
-      require"octo".setup()
+    config = function()
+      require "octo".setup()
     end
   }
 
   use 'j-hui/fidget.nvim'
+  use { "akinsho/toggleterm.nvim", tag = '*', config = function()
+    require("toggleterm").setup()
+  end }
+  use {
+    "SmiteshP/nvim-gps",
+    requires = "nvim-treesitter/nvim-treesitter"
+  }
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup {}
+    end
+  }
+  use 'norcalli/nvim-colorizer.lua'
 end)
