@@ -37,7 +37,7 @@ let s:warning2="#ff8800"
 exe "let s:fmt_none     = ' "   .   "gui=NONE"          .   " cterm=NONE"           .   "'"
 exe 'hi Normal guifg='s:fg' guibg='s:bg
 exe 'hi Cursor guifg='s:bg' guibg='s:fg
-exe 'hi CursorLine  guibg='s:bg2
+exe 'hi CursorLine  guibg='s:bg
 exe 'hi CursorLineNr guifg='s:str' guibg='s:bg
 exe 'hi CursorColumn  guibg='s:bg2
 exe 'hi ColorColumn  guibg='s:bg2
@@ -52,17 +52,18 @@ exe 'hi Search   gui=underline'
 exe 'hi Directory guifg='s:const
 exe 'hi Folded guifg='s:fg4' guibg='s:bg
 exe 'hi WildMenu guifg='s:str' guibg='s:bg
+exe 'hi SignColumn guifg='s:bg' guibg='s:bg2
 
 exe 'hi Boolean guifg='s:const
 exe 'hi Character guifg='s:const
 exe 'hi Comment guifg='s:comment
 exe 'hi Conditional guifg='s:keyword
 exe 'hi Constant guifg='s:const
-exe 'hi Todo guibg='s:bg
+exe 'hi Todo guibg=#ffff00'
 exe 'hi Define guifg='s:keyword
-exe 'hi DiffAdd guifg=#fafafa guibg=#123d0f gui=bold'
-exe 'hi DiffDelete guibg='s:bg2
-exe 'hi DiffChange  guibg=#151b3c guifg=#fafafa'
+exe 'hi DiffAdd guifg=#00ff9a guibg=#000000 gui=bold'
+exe 'hi DiffDelete guifg=#ff0000 guibg=#000000'
+exe 'hi DiffChange  guibg=#0f0f0f guifg=#00bfff'
 exe 'hi DiffText guifg=#ffffff guibg=#ff0000 gui=bold'
 exe 'hi ErrorMsg guifg='s:warning' guibg='s:bg2' gui=bold'
 exe 'hi WarningMsg guifg='s:fg' guibg='s:warning2
