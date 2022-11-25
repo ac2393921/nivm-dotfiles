@@ -92,6 +92,15 @@ packer.startup(function(use)
   use 'RRethy/vim-illuminate'
   use 'sunjon/stylish.nvim'
   use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+
+  use("petertriho/nvim-scrollbar")
+  use {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require('gitsigns').setup()
+      require("scrollbar.handlers.gitsigns").setup()
+    end
+  }
   use {
     "kevinhwang91/nvim-hlslens",
     config = function()
@@ -101,7 +110,7 @@ packer.startup(function(use)
       })
     end,
   }
-  use 'lewis6991/gitsigns.nvim'
+
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
   use { 'akinsho/git-conflict.nvim', tag = "*", config = function()
     require('git-conflict').setup()
@@ -115,8 +124,6 @@ packer.startup(function(use)
       require("which-key").setup {}
     end
   }
-
-  use 'petertriho/nvim-scrollbar'
 
   use 'romgrk/barbar.nvim'
   use {
