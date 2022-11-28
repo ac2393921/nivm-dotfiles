@@ -1,5 +1,5 @@
 -- Set barbar's options
-require'bufferline'.setup {
+require 'bufferline'.setup {
   -- Enable/disable animations
   animation = true,
 
@@ -18,11 +18,11 @@ require'bufferline'.setup {
   clickable = true,
 
   -- Excludes buffers from the tabline
-  exclude_ft = {'javascript'},
-  exclude_name = {'package.json'},
+  exclude_ft = { 'javascript' },
+  exclude_name = { 'package.json' },
 
   -- Show every buffer
-  hide = {current = false, inactive = false, visible = false},
+  hide = { current = false, inactive = false, visible = false },
 
 
   -- Enable/disable icons
@@ -77,7 +77,7 @@ local nvim_tree_events = require('nvim-tree.events')
 local bufferline_api = require('bufferline.api')
 
 local function get_tree_size()
-  return require'nvim-tree.view'.View.width
+  return require 'nvim-tree.view'.View.width
 end
 
 nvim_tree_events.subscribe('TreeOpen', function()
@@ -91,3 +91,4 @@ end)
 nvim_tree_events.subscribe('TreeClose', function()
   bufferline_api.set_offset(0)
 end)
+
